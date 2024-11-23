@@ -4,6 +4,9 @@ import 'express-async-errors';
 import { connectDB } from './db/connect.js'; // Database connection
 import { notFound } from './middleware/not-found.js'; //404 handler
 import { errorHandlerMiddleware } from './middleware/error-handler.js'; //error handler middleware
+import { productRouter } from './routes/jobs.js';
+import { authRouter } from './routes/auth.js';
+import { auth } from './middleware/authentication.js';
 
 const app = express();
 const port = process.env.PORT || 3000; // Set the port to the PORT environment variable or 3000
@@ -14,7 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 express.static('public'); // Serve static files
 
 // routes
-//  add routes here
+app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/jobs', auth, productRouter); // protect all product routes with the auth middleware
 
 // 404 handler
 app.use(notFound); // Use notFound middleware for handling 404 errors
