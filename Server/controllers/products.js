@@ -5,14 +5,14 @@ import { BadRequestError, NotFoundError } from '../errors/index.js';
 // get all products
 const getAllProducts = async (req, res) => {
   // find all products created by the user and sort them by creation date
-  const product = await product_model
+  const products = await product_model
     .find({ createdBy: req.user.userId })
     .sort({
       createdAt: 1,
     });
 
-  const nbHits = product.length; // number of products found
-  res.status(StatusCodes.OK).json({ product, nbHits });
+  const nbHits = products.length; // number of products found
+  res.status(StatusCodes.OK).json({ products, nbHits });
 };
 
 // get a product
@@ -48,14 +48,14 @@ const createProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   // get the company, position, user id and product id from the request object
   const {
-    body: { company, position },
+    body: { name, price, quantity, category },
     user: { userId },
     params: { id: productId },
   } = req;
 
   // check if the company and position are provided
-  if (!company || !position) {
-    throw new BadRequestError('Company and position are required');
+  if (!name || !price || !quantity || !category) {
+    throw new BadRequestError('fields are required');
   }
 
   // find the product by id and user id and update it
