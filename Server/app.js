@@ -1,6 +1,7 @@
 import express from 'express';
 import 'dotenv/config'; // Load environment variables from a .env file into process.env
 import 'express-async-errors';
+import { connectDB } from './db/connect.js'; // Database connection
 import { notFound } from './middleware/not-found.js'; //404 handler
 import { errorHandlerMiddleware } from './middleware/error-handler.js'; //error handler middleware
 
