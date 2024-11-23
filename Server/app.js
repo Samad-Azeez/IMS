@@ -4,7 +4,7 @@ import 'express-async-errors';
 import { connectDB } from './db/connect.js'; // Database connection
 import { notFound } from './middleware/not-found.js'; //404 handler
 import { errorHandlerMiddleware } from './middleware/error-handler.js'; //error handler middleware
-import { productRouter } from './routes/jobs.js';
+import { productRouter } from './routes/products.js';
 import { authRouter } from './routes/auth.js';
 import { auth } from './middleware/authentication.js';
 

@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import { BadRequestError, UnauthenticatedError } from '../errors/index.js';
 
 // Authenticate a user by checking the email and password in the request body and return a JWT token for the user to authenticate themselves
-const login = async (req, res) => {
+export const login = async (req, res) => {
   const { department, password } = req.body;
 
   // check if the email and password are provided
@@ -28,5 +28,3 @@ const login = async (req, res) => {
   const token = user.createJWT();
   res.status(StatusCodes.OK).json({ user: { name: user.name }, token });
 };
-
-export { login, register };
