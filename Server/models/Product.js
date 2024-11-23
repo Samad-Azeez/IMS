@@ -36,6 +36,11 @@ const productSchema = new mongoose.Schema(
 
       required: [true, 'Please enter product company'],
     },
+    status: {
+      type: String,
+      enum: ['available', 'out of stock'],
+      default: 'available',
+    },
     description: {
       type: String,
     },
