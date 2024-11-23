@@ -18,7 +18,7 @@ express.static('public'); // Serve static files
 
 // routes
 app.use('/api/v1/auth', authRouter);
-app.use('/api/v1/jobs', auth, productRouter); // protect all product routes with the auth middleware
+app.use('/api/v1/products', auth, productRouter); // protect all product routes with the auth middleware
 
 // 404 handler
 app.use(notFound); // Use notFound middleware for handling 404 errors
